@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Linux Tips"
+title:  "Shell Tips"
 date:   2024-12-08 18:55:51 +0800
-categories: Linux
+categories: Shell
 ---
 
 #### Homebrew
