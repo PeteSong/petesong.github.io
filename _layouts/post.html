@@ -1,0 +1,79 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.author -%}
+      • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card"
+          itemprop="name">{{ page.author }}</span></span>
+      {%- endif -%}
+    </p>
+  </header>
+
+  <div class="content-wrapper">
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    <div id="table-of-contents">
+      {% toc %}
+    </div>
+  </div>
+
+
+
+  {%- if site.disqus.shortname -%}
+  {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>
+
+<style>
+  .wrapper {
+    max-width: 1200px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    gap: 0px;
+    /* 设置最大宽度 */
+    max-width: 2000px;
+    /* 居中显示 */
+    /* margin: 0 auto; */
+    /* 防止超出时产生横向滚动 */
+    overflow-x: hidden;
+  }
+
+  .post-content {
+    /* 主内容区域 */
+    flex: 1;
+    /* 防止内容撑开容器 */
+    min-width: 0;
+    /* 防止内容溢出 */
+    word-wrap: break-word;
+  }
+
+  .section-nav {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    /* 使其在滚动时保持固定 */
+    position: sticky;
+    /* 距顶部的距离 */
+    top: 10px;
+    /* 限制高度为视口大小 */
+    max-height: calc(100vh - 20px);
+    /* 添加滚动条以适应长内容 */
+    overflow-y: auto;
+  }
+</style>

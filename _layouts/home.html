@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+  <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+  <div class="content-container">
+    <aside class="sidebar">
+      {%- assign default_paths = site.pages | map: "path" -%}
+      {%- assign page_paths = site.header_pages | default: default_paths -%}
+      <nav class="sidebar-nav">
+        <ul>
+          {%- for path in page_paths -%}
+          <li>
+            {%- assign my_page = site.pages | where: "path", path | first -%}
+            {%- if my_page.title and my_page.title != "About" -%}
+            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+            {%- endif -%}
+          </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </aside>
+
+    {{ content }}
+
+    <main class="main-content">
+      {%- if site.posts.size > 0 -%}
+      <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+      <ul class="post-list">
+        {%- for post in site.posts -%}
+        <li>
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      </ul>
+
+      <p class="rss-subscribe">subscribe <a href="{{ " /feed.xml" | relative_url }}">via RSS</a></p>
+      {%- endif -%}
+    </main>
+  </div>
+</div>
+
+<style>
+  .content-container {
+    display: flex;
+  }
+
+  .sidebar {
+    width: 200px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+  }
+
+  .sidebar-nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .sidebar-nav li {
+    margin: 0.5rem 0;
+  }
+
+  .sidebar-nav a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .sidebar-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+  }
+</style>
