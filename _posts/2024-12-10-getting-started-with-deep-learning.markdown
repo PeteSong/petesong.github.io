@@ -3,7 +3,6 @@ layout: post
 title:  "NVIDIA Getting started with Deep Learning"
 date:   2024-12-10 15:35:51 +0800
 categories: Deep Learning
-toc: true
 ---
 
 ## Basic Concepts
