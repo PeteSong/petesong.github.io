@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Peter Song's Blog
-email: https://www.linkedin.com/in/peter-song-0347538a/
+email:
 description: >- # this means to ignore newlines until "baseurl:"
   "Hi everyone - I am looking for a new role and would appreciate your support. 
   Thank you in advance for any connections, advice, or opportunities you can offer."
@@ -27,6 +27,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
 github_username: petesong
+linkedin_username: peter-song-0347538a
 
 # Build settings
 theme: minima
