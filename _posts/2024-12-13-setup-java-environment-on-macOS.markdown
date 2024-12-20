@@ -2,7 +2,7 @@
 layout: post
 title:  "Setup Java environment on macOS"
 date:   2024-12-13 15:40:50 +0800
-categories: Python
+categories: macOS Java
 ---
 ## Setup Java environment on macOS
 

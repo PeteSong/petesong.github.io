@@ -2,19 +2,19 @@
 layout: post
 title:  "Setup Python environment on macOS"
 date:   2024-12-13 15:35:51 +0800
-categories: Python
+categories: macOS Python
 ---
 ## Setup Python environment on macOS
 
-First install [Homebrew](https://brew.sh/)
+First install [Homebrew](https://brew.sh/).
 
-Then install [pyenv](https://github.com/pyenv/pyenv)
+Then install [pyenv](https://github.com/pyenv/pyenv).
 
 ```shell
 brew install pyenv
 ```
 
-Install specific Python
+Install a specific version of Python.
 
 ```shell
 pyenv install 3.12
@@ -27,7 +27,7 @@ brew install uv
 ```
 
 Install uv-managed python even if there's already a Python installation on your system.
-Once Python is installed, it will be used by `uv` command automatically
+Once Python is installed, it will be used by `uv` command automatically.
 When Python is installed by `uv`, it will not be available globally.
 
 ```shell
@@ -40,7 +40,7 @@ Created a new project.
 uv init python-demos
 ```
 
-Add a dependency
+Add a dependency.
 
 ```shell
 uv add pytest
@@ -49,7 +49,7 @@ uv add pytest-cov
 uv add pre-commit
 ```
 
-Configure the `pre-commit` with tools
+Configure the `pre-commit` with tools upside.
 
 `.pre-commit-config.yaml`
 ```yaml
@@ -80,10 +80,11 @@ Then install the git hooks.
 uv run pre-commit install
 ```
 
-now when you run `git commit`, it will run those tools automatically.
+Now when you run `git commit`, it will run those tools automatically.
 
 ## Run a file
 
+Using [python-demos](https://github.com/PeteSong/demos/tree/main/python-demos) as an example.
 ```shell
 cd python-demos
 
@@ -96,6 +97,3 @@ uv run ./leetcode_solutions/lc2235.py
 # run pytest
 uv run pytest ./tests/test_leetcode_solutions/test_lc13.py
 ```
-
-## Reference
-[https://github.com/PeteSong/demos/tree/main/python-demos](https://github.com/PeteSong/demos/tree/main/python-demos)

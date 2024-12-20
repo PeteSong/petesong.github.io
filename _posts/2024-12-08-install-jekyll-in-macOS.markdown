@@ -2,13 +2,14 @@
 layout: post
 title:  "Install Jekyll in macOS"
 date:   2024-12-08 18:55:51 +0800
-categories: jekyll
+categories: jekyll macOS
 ---
 Followed the [page](https://jekyllrb.com/docs/installation/macos/) to install Jekyll on macOS.
 
 Hardware: MBP M3
 OS: macOS Sonoma 14.7.1
 
+First install Ruby.
 ```shell
 brew install chruby ruby-install
 ruby-install ruby 3.3.6
@@ -41,5 +42,5 @@ mv ./newblog/* ./
 rm -rf newblog
 
 ## run the server to check the site in browser
-jekyll server
+jekyll server -w
 ```
