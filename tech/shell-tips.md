@@ -27,6 +27,7 @@ cat /proc/cpuinfo
 
 # Get the memory info
 free -th
+cat /proc/meminfo
 
 # Get the disk info
 df -hT
@@ -201,8 +202,12 @@ ls > 2.txt
 # append the output to the file
 ls -l >> 2.txt
 
+# print the stdout to the file
+ls > l1.txt
+# print the stderr to the file
+ls 2> l2.txt
 # print the stdout and stderr to the file
-ls &> 3.txt
+ls &> l3.txt
 
 # create folder
 mkdir -p ./d1/d2/d3
@@ -250,6 +255,16 @@ uniq file1.txt
 uniq -d file1.txt
 
 echo -e "a\na\nb\nc" | uniq
+
+# split file into pieces
+# -l 1000 put 10000 lines per output file
+# -d use numeric suffix starting at 0
+# a.txt_ prefix of output files
+split -l 10000 -d ./a.txt a.txt_
+
+# merge files
+cat file1.txt file2.txt file3.txt > merged.txt
+(echo "=== File 1 ==="; cat file1.txt; echo "=== File 2 ==="; cat file2.txt; echo "=== File 3 ==="; cat file3.txt) > merged.txt
 
 # select only fields 2, 3 from file
 # by default the field delimiter is TAB
@@ -352,6 +367,19 @@ sed 's/\t/,/g' input_file > out_file
 # trim all the trailing spaces
 sed -i 's/ *$//' t1.py
 
+# 统计每个字母出现的次数
+# sed 's/[^\n]/&\n/g' 把找到的非回车字符后面加一个回车字符 意味着在每个字母的后面加了一个回车
+#   s 替换命令
+#   [\n] 回车字符 
+#   [^\n] 非回车字符
+#   & 前面找到的字符
+# sed '/^$/d' 删除空行
+#   ^$ 行开头 和 行结尾，表示空行
+#   d 删除命令
+# sort 按照字母顺序排序
+# uniq -c 统计相同行出现的次数
+echo "ahebhaaa" | sed 's/[^\n]/&\n/g' | sed '/^$/d' | sort | uniq -c`
+
 # replace the first `false` in all JSOn files under the current directory with `true` in place,
 # also makes backup
 find . -type f -iname "*.json" -exec sed -i ".bak" 's/false/true/' {} \;
@@ -362,9 +390,13 @@ ls -l | awk '{print $2}'
 # or print 2nd and 3rd fields from a file
 awk '{print $2,$3}' file1.txt
 # print the last field using a comma as a field sepertor
-# -F field seperator
-# NF the number of fields in the current input record.
+#   -F field seperator
+#   NF the number of fields in the current input record.
 awk -F ',' '{print $NF}' ./test2.log
+# print the columns, connecting with commas
+# output should be like 
+#   2025/01/30 12:30:45Z,buyer1,sku1   
+awk '{print "2025/01/" $2 " " $3 "Z" "," $7 "," $12 }' ./test1.log
 ```
 
 ## Bash scripting
