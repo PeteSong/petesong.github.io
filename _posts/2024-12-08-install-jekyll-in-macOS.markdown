@@ -40,7 +40,10 @@ cd petesong.github.io
 jekyll new newblog
 mv ./newblog/* ./
 rm -rf newblog
+```
 
-## run the server to check the site in browser
+Run the server to check the site in browser
+
+```
 jekyll server -w
 ```

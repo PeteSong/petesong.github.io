@@ -15,7 +15,7 @@ sdk install java 21.0.5-amzn
 sdk install gradle 8.10.2
 ```
 
-Then create gradle project
+Then create a gradle project
 
 ```shell
 mkdir java-demos
