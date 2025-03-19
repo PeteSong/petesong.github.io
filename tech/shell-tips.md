@@ -4,9 +4,11 @@ title:  "Shell Tips"
 date:   2024-12-08 18:55:51 +0800
 tags: shell
 ---
-## Common commands in Linux
+# Common commands in Linux
 
-### Getting the system information
+## About system 
+
+### Get the system information
 
 ```shell
 # Get the current shell
@@ -30,36 +32,23 @@ free -th
 cat /proc/meminfo
 
 # Get the disk info
+# -T show filesystem types
+# -h huamn readable
 df -hT
 
-# Get the size of current folder
-du -sh
+# show the current date time
+date
 
 # display the path where can find the execution files
 echo $PATH
 alias path='sed "s/:/\n/g" <<< "$PATH"'
 path
 
-# Get who is logged on.
-w
-who
+# show the environmentable viriable
+env
 
-# Print the user name
-whoami
-
-# Print the groups a user is in
-groups
-
-# Print the user ids.
-id
-# only user id
-id -u
-
-# show the current date time
-date
-
-# show how long the system has been running
-uptime
+# show the alias
+alias
 
 # show the hostname
 hostname
@@ -88,12 +77,6 @@ netstat -l
 netstat -lt
 netstat -lu
 
-# show the environmentable viriable
-env
-
-# show the alias
-alias
-
 # list all running processes including the full command string
 ps auxww
 
@@ -118,6 +101,30 @@ systemctl list-units
 # operations about a service
 systemctl start|stop|restart|reload|status unit_name
 
+# show how long the system has been running
+uptime
+```
+
+### Get the current user
+```shell
+# Get who is logged on.
+w
+who
+
+# Print the user name
+whoami
+
+# Print the groups a user is in
+groups
+
+# Print the user ids.
+id
+# only user id
+id -u
+```
+
+### Shutdown the system
+```shell
 # log out
 logout
 
@@ -132,7 +139,7 @@ sudo shutdown -h 13:00
 shutdown -c 
 ```
 
-### Adding/Removing a user
+## Adding/Removing a user
 
 ```shell
 # add user
@@ -148,7 +155,7 @@ sudo passwd zt
 sudo userdel zt
 ```
 
-### Packages
+## Packages
 
 ```shell
 # if yum,
@@ -176,7 +183,7 @@ dpkg -l
 rpm -ivh package.rpm
 ```
 
-### Playing with files
+## Playing with files
 
 ```shell
 # enter the home directory
@@ -194,6 +201,15 @@ ls -t
 ls -tr
 # show only the dot files
 ls -d .*
+
+# list files in a tree-like format
+# -d list directories only
+# -L 2 max display depth of the directory tree
+tree -d -L 2
+
+# Get the size of current folder
+du -sh
+
 
 # create an empty file
 touch 1.txt
@@ -276,29 +292,6 @@ cut -d : -f 3 file2.txt
 paste file1 file2 file3
 # use : instead of TAB to merge files by columns
 past -d : file1 file2 file3
-
-# change file owner to zt, group to zt
-chown -R zt:zt ./ws
-
-# change file mode bits
-# user: 7 r+w+x (4+2+1)
-# group: 5 r+x (4+1)
-# others: 5 r+x (4+1)
-# owner can read/write/execute the file
-# the users in the group can read/execute the file
-# others can read/execute the file
-chmod 755 ./test1.sh
-
-# user 6 r+w
-# group 4 r
-# others 4 r
-chmod 644 ./test07
-
-# add execution for all
-chmod +x ./test.sh
-
-# add execution to the owner
-chmod u+x ./test.sh
 
 # MD5 message digest
 # compute MD5
@@ -399,7 +392,32 @@ awk -F ',' '{print $NF}' ./test2.log
 awk '{print "2025/01/" $2 " " $3 "Z" "," $7 "," $12 }' ./test1.log
 ```
 
-## Bash scripting
+```shell
+# change file owner to zt, group to zt
+chown -R zt:zt ./ws
+
+# change file mode bits
+# user: 7 r+w+x (4+2+1)
+# group: 5 r+x (4+1)
+# others: 5 r+x (4+1)
+# owner can read/write/execute the file
+# the users in the group can read/execute the file
+# others can read/execute the file
+chmod 755 ./test1.sh
+
+# user 6 r+w
+# group 4 r
+# others 4 r
+chmod 644 ./test07
+
+# add execution for all
+chmod +x ./test.sh
+
+# add execution to the owner
+chmod u+x ./test.sh
+```
+
+# Bash scripting
 
 ```shell
 #!/usr/bin/env bash
@@ -634,7 +652,7 @@ ff1()
 ff1 p1 p2 p3 p4
 ```
 
-
+# Others
 ## Homebrew
 ```shell
 # List the packages that the user requests to install.
