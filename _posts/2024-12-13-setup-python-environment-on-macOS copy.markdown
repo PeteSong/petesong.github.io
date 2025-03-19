@@ -40,7 +40,7 @@ Created a new project.
 uv init python-demos
 ```
 
-Add a dependency.
+Add dependencies.
 
 ```shell
 uv add pytest
@@ -95,5 +95,7 @@ source ./scripts/check.sh ./leetcode_solutions/lc2235.py
 uv run ./leetcode_solutions/lc2235.py
 
 # run pytest
+uv run pytest
+# ... or on a specific file
 uv run pytest ./tests/test_leetcode_solutions/test_lc13.py
 ```
