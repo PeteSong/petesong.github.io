@@ -38,12 +38,25 @@ pnpm -g install appium
 pnpm -g list --dept=0
 ```
 
+If wanna to use the `appium.webdriver.appium_service.AppiumService` to start the `appium` automatically, you should install the `appium` with `npm` globally.
+
+```shell
+npm -g install appium
+```
+
+
 Check the versions
 
 ```shell
 alias nodeversions="echo node: $(node -v); echo corepack: $(corepack -v); echo npm: $(npm -v); echo fnm: $(fnm --version); echo pnpm: $(pnpm -v)"
 
 nodeversions
+```
+
+OR
+
+```shell
+pnpm version
 ```
 
 ## Create a project
